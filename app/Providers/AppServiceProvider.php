@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Http\Resources\Json\Resource;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -14,6 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+       // Resource::withoutWrapping();
+        
+        
         Blade::if('env', function ($environment) {
             return app()->environment($environment);
         });    
