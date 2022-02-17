@@ -72,9 +72,9 @@ class OrderController extends Controller
      * @param  str  $name
      * @return \Illuminate\Http\Response
      */
-    public function search($name)
+    public function search($product_id)
     {
-        return Order::where('name', 'like', '%'.$name.'%')->get();
+        return Order::where('product_id', $product_id)->get();
 
     }
 

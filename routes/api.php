@@ -71,7 +71,7 @@ Route::resource('product-image', ProductImageController::class);
 Route::get('/inventory/search/{name}','InventoryController@search'); 
 Route::resource('inventory', InventoryController::class);
 
-Route::get('/order/search/{name}','OrderController@search'); 
+Route::get('/order/search/{product_id}','OrderController@search'); 
 Route::resource('order', OrderController::class);
 
 Route::get('/shipment/search/{name}','ShipmentController@search'); 
