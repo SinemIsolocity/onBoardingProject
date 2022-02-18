@@ -19,9 +19,9 @@ class Order extends Model
         'status'
     ];
 
-    protected $hidden = [
+   /*  protected $hidden = [
         'product_id', 'identification', 'created_at' //These items are hidden in resources json object.
-    ];
+    ]; */
 
     protected $casts = [
         'order_date' => 'datetime:Y-m-d',

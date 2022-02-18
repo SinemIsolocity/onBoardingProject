@@ -70,7 +70,7 @@ Route::resource('product-image', ProductImageController::class);
 Route::get('/inventory/search/{id}','InventoryController@search'); 
 Route::resource('inventory', InventoryController::class);
 
-Route::get('/order/search/{product_id}','OrderController@search'); 
+Route::get('/order/search/{identification}','OrderController@search'); 
 Route::resource('order', OrderController::class);
 
 Route::get('/shipment/search/{id}','ShipmentController@search'); 
