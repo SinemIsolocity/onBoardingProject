@@ -14,6 +14,13 @@ class ShipmentResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'order_details'=> "Product Id: " . $this->product_id . " Order Id: " . $this->order_id . "Shipment_number: " . $this->shipment_number,
+            'shipment_date' => $this->shipment_date,
+            'tracking_details' => $this->tracking_details,
+            'status' => $this->status,
+            'order_detail' => url('api/order/'. $this->id .'/'),
+            'note' => $this->note
+        ];
     }
 }

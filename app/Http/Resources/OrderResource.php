@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\ShipmentResource;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderResource extends JsonResource
@@ -21,6 +23,7 @@ class OrderResource extends JsonResource
             'note' => $this->note,
             'status' => $this->order,
             'order_detail' => url('api/order/'. $this->id .'/'),
+            //'shipment' => ShipmentResource::collection($this->shipment),
         ];
     }
 }

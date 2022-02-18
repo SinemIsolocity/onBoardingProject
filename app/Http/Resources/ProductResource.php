@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use App\Http\Resources\OrderResource;
+use App\Http\Resources\ProductImageResource;
+use App\Http\Resources\ShipmentResource;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -24,8 +26,11 @@ class ProductResource extends JsonResource
             'cost'=>$this->cost,
             'description'=>$this->description . ". Identification:  " . $this->identification,
             'product_detail' => url('api/products/'. $this->id .'/'),
-           // 'order' => $this->order,
-           'order' => OrderResource::collection($this->order)
+            // 'order' => $this->order,
+            'order' => OrderResource::collection($this->order),
+            //'product_image' => ProductImageResource::collection($this->product_image)
+
+            //'shipment' => ShipmentResource::collection($this->shipment),
 
         ];
     }

@@ -71,9 +71,9 @@ class ShipmentController extends Controller
      * @param  str  $name
      * @return \Illuminate\Http\Response
      */
-    public function search($name)
+    public function search($id)
     {
-        return Shipment::where('name', 'like', '%'.$name.'%')->get();
+        return Shipment::where('id', $id)->get();
 
     }
 

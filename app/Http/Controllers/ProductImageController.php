@@ -66,9 +66,9 @@ class ProductImageController extends Controller
      * @param  str  $name
      * @return \Illuminate\Http\Response
      */
-    public function search($name)
+    public function search($id)
     {
-        return ProductImage::where('name', 'like', '%'.$name.'%')->get();
+        return ProductImage::where('id', $id)->get();
 
     }
 
