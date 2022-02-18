@@ -29,7 +29,7 @@ class ProductTest extends TestCase
     
     }
 
-    public function test_it_update_product()
+    public function test_it_updates_product()
     {
         $response = $this->put('api/products/1', [
             'name' => 'Product update',
@@ -39,7 +39,7 @@ class ProductTest extends TestCase
     
     
     }
-    public function test_it_search_product()
+    public function test_it_searches_product()
     {
         $response = $this->get('api/products/search/product');
         //$response->assertOk();
@@ -47,7 +47,7 @@ class ProductTest extends TestCase
     
     }
 
-    public function test_it_delete_product()
+    public function test_it_deletes_product()
     {
         $response = $this->delete('api/products/1');
         $response->assertStatus(200);

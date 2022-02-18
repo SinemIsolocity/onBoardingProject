@@ -54,13 +54,19 @@ Route::group(['middleware' => ['encryptCookies']], function () {
 /**
  * These endpoints are about Product's CRUD operations.
  */
-
 Route::get('/products/search/{name}','ProductsController@search'); 
 Route::resource('products', ProductsController::class);
 
+
+/**
+ * These endpoints are about ProductImage's CRUD operations.
+ */
 Route::get('/product-image/search/{id}','ProductImageController@search'); 
 Route::resource('product-image', ProductImageController::class);
 
+/**
+ * These endpoints are about Inventory's CRUD operations.
+ */
 Route::get('/inventory/search/{id}','InventoryController@search'); 
 Route::resource('inventory', InventoryController::class);
 
