@@ -6,8 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Models\Order; 
 
+use App\Services\OrderService;
+
 class OrderController extends Controller
 {
+
+    private $orderService;
+
+    public function __construct(OrderService $orderService) 
+    {
+        $this->orderService = $orderService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return Order::all();
+        return $this->orderService->all();
     }
 
     /**
@@ -26,18 +36,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'product_id'=>'required',
-            'identification'=>'required',
-            'purchase_order_number'=>'required',
-            'order_date'=>'required',
-            'request_shipment_date'=>'required',
-            'actual_arrival_date'=>'required',
-            'note'=>'required',
-            'status'=>'required'
-
-        ]);
-        return Order::create($request->all());
+        return $this->orderService->create($request);
     }
 
     /**
@@ -48,7 +47,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return Order::find($id);
+        return $this->orderService->find($id);
     }
 
     /**
@@ -60,9 +59,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order = Order::find($id);
-        $order->update($request->all());
-        return $order;
+        return $this->orderService->edit($request, $id);
     }
 
 
@@ -74,7 +71,7 @@ class OrderController extends Controller
      */
     public function search($identification)
     {
-        return Order::where('identification', $identification)->get();
+        return $this->orderService->search($identification);
 
     }
 
@@ -86,6 +83,6 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        return Order::destroy($id);
+        return $this->orderService->delete($id);
     }
 }

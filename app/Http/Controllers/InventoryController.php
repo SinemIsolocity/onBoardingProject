@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Inventory; 
+use App\Services\InventoryService;
 
 class InventoryController extends Controller
 {
+
+    private $inventoryService;
+
+    public function __construct(InventoryService $inventoryService) 
+    {
+        $this->inventoryService = $inventoryService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        return Inventory::all();
+        return $this->inventoryService->all();
     }
 
     /**
@@ -25,14 +34,7 @@ class InventoryController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $request->validate([
-            'product_id'=>'required',
-            'batch'=>'required',
-            'quantity'=>'required'
-
-        ]);
-        return Inventory::create($request->all());
+        return $this->inventoryService->create($request);
     }
 
     /**
@@ -43,7 +45,7 @@ class InventoryController extends Controller
      */
     public function show($id)
     {
-        return Inventory::find($id);
+        return $this->inventoryService->find($id);
     }
 
     /**
@@ -55,9 +57,7 @@ class InventoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $inventory = Inventory::find($id);
-        $inventory->update($request->all());
-        return $inventory;
+        return $this->inventoryService->edit($request, $id);
     }
     
      /**
@@ -66,9 +66,9 @@ class InventoryController extends Controller
      * @param  str  $name
      * @return \Illuminate\Http\Response
      */
-    public function search($id)
+    public function search($batch)
     {
-        return Inventory::where('id', $id)->get();
+        return $this->inventoryService->search($batch);
 
     }
     /**
@@ -79,6 +79,6 @@ class InventoryController extends Controller
      */
     public function destroy($id)
     {
-        return Inventory::destroy($id);
+        return $this->inventoryService->delete($id);
     }
 }

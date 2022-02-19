@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Product; 
 use Illuminate\Http\Request;
 use App\Events\ProductUpdateEvent;
+use App\Services\ProductService;
 
 class ProductsController extends Controller
 {
+
+
+    private $productService;
+
+    public function __construct(ProductService $productService) 
+    {
+        $this->productService = $productService;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,17 +26,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Product::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->productService->all();
     }
 
     /**
@@ -36,22 +37,11 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'identification'=>'required',
-            'batch_number'=>'required',
-            'quantity'=>'required',
-            'price'=>'required',
-            'cost'=>'required',
-            'reorder_point'=>'required',
-            'active'=>'required',
-            'description'=>'required'
 
-        ]);
-         
-        return Product::create($request->all());
-        
+        return $this->productService->create($request);
     }
+        
+    
 
     /**
      * Display the specified resource.
@@ -61,18 +51,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        return Product::find($id);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return $this->productService->find($id);
     }
 
     /**
@@ -84,9 +63,7 @@ class ProductsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
-        $product->update($request->all());
-        return $product;
+        return $this->productService->edit($request, $id);
     }
 
     /**
@@ -97,7 +74,7 @@ class ProductsController extends Controller
      */
     public function search($name)
     {
-        return Product::where('name', 'like', '%'.$name.'%')->get();
+        return $this->productService->search($name);
 
     }
 
@@ -109,7 +86,8 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        return Product::destroy($id);
+        return $this->productService->delete($id);
+        
 
     }
 

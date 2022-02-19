@@ -61,7 +61,7 @@ Route::resource('products', ProductsController::class);
 /**
  * These endpoints are about ProductImage's CRUD operations.
  */
-Route::get('/product-image/search/{id}','ProductImageController@search'); 
+Route::get('/product-image/search/{name}','ProductImageController@search'); 
 Route::resource('product-image', ProductImageController::class);
 
 /**

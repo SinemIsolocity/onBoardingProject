@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProductImage;
+use App\Services\ProductImageService;
 
 class ProductImageController extends Controller
 {
+
+    private $producImageService;
+
+    public function __construct(ProductImageService $productImageService) 
+    {
+        $this->productImageService = $productImageService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class ProductImageController extends Controller
      */
     public function index()
     {
-        return ProductImage::all();
+        return $this->productImageService->all();
     }
 
     /**
@@ -25,14 +34,7 @@ class ProductImageController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-        'product_id'=>'required',
-        'name'=>'required',
-        'original_name'=>'required',
-        'mime_type'=>'required',
-        'size'=>'required'
-    ]);
-    return ProductImage::create($request->all());
+        return $this->productImageService->create($request);
     }
 
     /**
@@ -43,7 +45,7 @@ class ProductImageController extends Controller
      */
     public function show($id)
     {
-        return ProductImage::find($id);
+        return $this->productImageService->find($id);
     }
 
     /**
@@ -55,9 +57,7 @@ class ProductImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $productImage = ProductImage::find($id);
-        $productImage->update($request->all());
-        return $productImage;
+        return $this->productImageService->edit($request, $id);
     }
 
      /**
@@ -66,9 +66,9 @@ class ProductImageController extends Controller
      * @param  str  $name
      * @return \Illuminate\Http\Response
      */
-    public function search($id)
+    public function search($name)
     {
-        return ProductImage::where('id', $id)->get();
+        return $this->productImageService->search($name);
 
     }
 
@@ -81,6 +81,6 @@ class ProductImageController extends Controller
      */
     public function destroy($id)
     {
-        return ProductImage::destroy($id);
+        return $this->productImageService->delete($id);
     }
 }

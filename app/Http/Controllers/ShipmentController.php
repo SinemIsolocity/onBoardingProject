@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Shipment; 
+use App\Services\ShipmentService;
 
 class ShipmentController extends Controller
 {
+    private $shipmentService;
+
+    public function __construct(ShipmentService $shipmentService) 
+    {
+        $this->shipmentService = $shipmentService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +23,7 @@ class ShipmentController extends Controller
      */
     public function index()
     {
-        return Shipment::all();
+        return $this->shipmentService->all();
     }
 
     /**
@@ -26,17 +34,7 @@ class ShipmentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'product_id'=>'required',
-            'order_id'=>'required',
-            'shipment_number'=>'required',
-            'shipment_date'=>'required',
-            'tracking_details'=>'required',
-            'note'=>'required',
-            'status'=>'required'
-
-        ]);
-        return Shipment::create($request->all());
+        return $this->shipmentService->create($request);
     }
 
     /**
@@ -47,7 +45,7 @@ class ShipmentController extends Controller
      */
     public function show($id)
     {
-        return Shipment::find($id);
+        return $this->shipmentService->find($id);
     }
 
     /**
@@ -59,9 +57,7 @@ class ShipmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $shipment = Shipment::find($id);
-        $shipment->update($request->all());
-        return $shipment;
+        return $this->shipmentService->edit($request, $id);
     }
 
 
@@ -71,9 +67,9 @@ class ShipmentController extends Controller
      * @param  str  $name
      * @return \Illuminate\Http\Response
      */
-    public function search($id)
+    public function search($shipment_number)
     {
-        return Shipment::where('id', $id)->get();
+        return $this->shipmentService->search($shipment_number);
 
     }
 
@@ -85,6 +81,6 @@ class ShipmentController extends Controller
      */
     public function destroy($id)
     {
-        return Shipment::destroy($id);
+        return $this->shipmentService->delete($id);
     }
 }
