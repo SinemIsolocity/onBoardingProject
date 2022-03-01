@@ -10,6 +10,12 @@ use App\Services\ShipmentService;
 class ShipmentController extends Controller
 {
     private $shipmentService;
+    
+    
+    
+    // 1. Same feedback as in InventoryController.php
+    
+    
 
     public function __construct(ShipmentService $shipmentService) 
     {

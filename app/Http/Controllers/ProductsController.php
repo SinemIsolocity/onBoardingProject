@@ -12,6 +12,11 @@ class ProductsController extends Controller
 
 
     private $productService;
+    
+    
+    // 1. Same feedback as in InventoryController.php
+    
+    
 
     public function __construct(ProductService $productService) 
     {

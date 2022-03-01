@@ -51,6 +51,17 @@ Route::group(['middleware' => ['encryptCookies']], function () {
     Route::post('/signup', '\App\Api\Controllers\UserController@signup');
 });
 
+
+
+
+// 1. All routes bellow should be grouped under Middelware "auth:api".
+// Logged out users should not have access to this.
+
+// 2. Better to use "api_resource method rather than "resource" to access controller CRUD.
+// For example:   '$this->apiResource('deviations', 'DeviationController');'
+
+
+
 /**
  * These endpoints are about Product's CRUD operations.
  */
@@ -113,7 +124,8 @@ Route::get('/json-shipment', function(){
 
 
 
-
+// 2. This looks good!
+// 3. This should also be in ProductService update function
 
 Route::get('/test/{name}', function($name){
     Log::info('/test in api.php');

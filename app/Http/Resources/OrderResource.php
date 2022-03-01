@@ -8,6 +8,10 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class OrderResource extends JsonResource
 {
+    
+    
+    // 1. Looks Good!!
+    
     /**
      * Transform the resource into an array.
      *

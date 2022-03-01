@@ -12,6 +12,10 @@ class OrderController extends Controller
 {
 
     private $orderService;
+    
+    
+    // 1. Same feedback as in InventoryController.php
+    
 
     public function __construct(OrderService $orderService) 
     {

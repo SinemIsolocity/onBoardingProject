@@ -9,6 +9,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use\Illuminate\Support\Facades\Log;
 
 
+// 1. Looks Good! Well implemented
+
+
 class ProductUpdateListener
 {
     /**

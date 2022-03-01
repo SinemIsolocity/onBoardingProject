@@ -15,6 +15,11 @@ class ProductService
     private $validator;
     private $hasher;
 
+
+
+    // 1. Same feedback as in InventoryService.php
+    
+    
     public function __construct(
         Validator $validator,
         Response $response,

@@ -18,6 +18,13 @@ class Order extends Model
         'note',
         'status'
     ];
+    
+    
+    // 1. Same feedback as in Inventory.php
+    
+    // 2. Unnecessary code should always be removed
+    
+    
 
    /*  protected $hidden = [
         'product_id', 'identification', 'created_at' //These items are hidden in resources json object.
