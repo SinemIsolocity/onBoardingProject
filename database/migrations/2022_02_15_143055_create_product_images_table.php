@@ -13,6 +13,10 @@ class CreateProductImagesTable extends Migration
      */
     public function up()
     {
+        
+        // 1. Same feedback as in create_product_table migration
+        
+        
         Schema::create('product_images', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('product_id');

@@ -14,6 +14,11 @@ class ShipmentService
     private $response;
     private $validator;
     private $hasher;
+    
+    
+    // 1. Same feedback as in InventoryService.php
+    
+    
 
     public function __construct(
         Validator $validator,

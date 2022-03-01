@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 
+    // 1. Same feedback as in Inventory.php
+    
+    
     protected $fillable = [
         'name',
         'identification',

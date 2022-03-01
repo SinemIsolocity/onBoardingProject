@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductImage extends Model
 {
+    
+    // 1. Same feedback as in Inventory.php
+    
+    
     protected $fillable = [
         'product_id',
         'name',

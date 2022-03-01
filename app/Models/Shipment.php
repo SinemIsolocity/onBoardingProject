@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Shipment extends Model
 {
+    
+    // 1. Same feedback as in Inventory.php
+    
+    
     protected $fillable = [
         'product_id',
         'order_id',

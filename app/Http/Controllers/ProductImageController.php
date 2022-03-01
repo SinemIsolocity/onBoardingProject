@@ -10,6 +10,10 @@ class ProductImageController extends Controller
 {
 
     private $producImageService;
+    
+    
+    // 1. Same feedback as in InventoryController.php
+    
 
     public function __construct(ProductImageService $productImageService) 
     {

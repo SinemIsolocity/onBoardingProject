@@ -15,6 +15,9 @@ class InventoryController extends Controller
     {
         $this->inventoryService = $inventoryService;
     }
+    
+    // 1. Encouraged to use validation in a separate Request File. Reffer to DeviationController.php line 35 as an example
+    // This applies to all Controller Methods (store, show ... etc)
 
     /**
      * Display a listing of the resource.
@@ -25,6 +28,9 @@ class InventoryController extends Controller
     {
         return $this->inventoryService->all();
     }
+
+    
+    // 2. Well done! Service usage looks good!
 
     /**
      * Store a newly created resource in storage.

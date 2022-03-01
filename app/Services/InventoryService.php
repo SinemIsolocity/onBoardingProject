@@ -24,6 +24,16 @@ class InventoryService
         $this->validator = $validator;
         $this->hasher = $hasher;
     }
+    
+    
+    // 1. Validation looks good, but should be in Controller, Not in service.
+    
+    // 2. InventoryResource file created but never used. Reffer to DeviationController.php as an example
+    
+    // 3. Also can remove unnecessary imports "Illuminate\Contracts\Routing\ResponseFactory, Response, Validator and Hasher". These are never used
+    
+    // 4. Always use pagination to avoid performance issues. Real applications will probably have thowsands of records and loading them all with waste resources.
+    
 
     public function all()
     {
@@ -47,6 +57,9 @@ class InventoryService
     {
         return Inventory::find($id);
     }
+    
+    
+    // 5. function name is better as "update" inspead of "edit" to follow common standars
 
     public function edit($request, $id)
     { 
@@ -55,6 +68,8 @@ class InventoryService
         return $inventory;
 
     }
+    
+    // 6. It is adviced to use "LIKE" and "%" operator to avoid missing results
 
     public function search($batch)
     {
